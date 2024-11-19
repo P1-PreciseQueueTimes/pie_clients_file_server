@@ -1,23 +1,26 @@
-from flask import Flask, request
+from flask import Flask, request,render_template
+from datetime import datetime
 
 app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
-    return """
-<p>#_._#####_,-'""`-._</p>
-<p>(,-.`._,'(#######|\\`-/|</p>
-<p>###`-.-'#\\#)-`(#,#o#o)</p>
-<p>#########`-####\\`_`"'-</p>
-
-    """
+    return render_template("index.html")
 
 @app.route("/post/testing",methods=["POST"])
 def receive_post():
     request_data = request.get_json()
 
-    name = request_data["name"]
+    host_name = request_data["host_name"]
 
-    age = request_data["age"]
+    pie_time = request_data["internal_time"]
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print()
+    print("Host Name: {}\nPie Time: {}\nInternal Time".format(host_name,pie_time,current_time))
 
-    return "Name: {}, Age: {}".format(name,age) 
+    return "" 
+
+
+if __name__ == "__main__":
+    app.run()
