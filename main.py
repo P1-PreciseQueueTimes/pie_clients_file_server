@@ -7,8 +7,21 @@ app = Flask(__name__)
 def hello_world():
     return render_template("index.html")
 
-@app.route("/post/testing",methods=["POST"])
-def receive_post():
+@app.route("/post/testing/sender",methods=["POST"])
+def post_sender(): 
+    request_data = request.get_json()
+
+    request_number = request_data["request_number"]
+
+    pie_time = request_data["internal_time"]
+    print()
+
+    print("Sent signal\nReq num: {}\nTime: {}".format(request_number,pie_time))
+
+    return ""
+
+@app.route("/post/testing/receiver",methods=["POST"])
+def post_receiver():
     request_data = request.get_json()
 
     host_name = request_data["host_name"]
