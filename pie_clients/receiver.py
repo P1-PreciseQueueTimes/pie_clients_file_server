@@ -14,7 +14,7 @@ base_post_url = base_url + "/post/testing/receiver"
 host_name = socket.gethostname() 
 
 wifi_interface = "wlan1" 
-sender_mac = "58:cf:79:db:00:34"
+sender_mac = "dc:a6:32:54:aa:58"
 channel = 13
 user = ""
 

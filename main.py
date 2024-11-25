@@ -16,7 +16,7 @@ zip_folder("test","test.zip")
 
 app = Flask(__name__)
 
-@app.route("/get/testing")
+app.route("/get/testing")
 def hello_world():
 	return "Hello World!!!"
 
