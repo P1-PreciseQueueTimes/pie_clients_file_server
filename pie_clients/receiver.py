@@ -56,7 +56,7 @@ def print_info(packet):
 
 				#resp = requests.get(url=base_get_url + host_name)
 
-				#time_offset = int(resp.text)
+                time_offset = int("59")
 
                 old_time = current_time
 
