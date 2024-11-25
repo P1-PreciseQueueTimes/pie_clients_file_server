@@ -40,9 +40,9 @@ def print_info(packet):
                 return
 
             if packet["WLAN"].ta == sender_mac: 
-                
+		signal_strength = packet["WLAN_RADIO"].signal_dbm 
 
-                out_obj = {"host_name":host_name,"internal_time":current_time}
+                out_obj = {"host_name":host_name,"internal_time":current_time,"signal_strength":signal_strength}
 
                 requests.post(base_post_url,json=out_obj)
 
