@@ -57,7 +57,7 @@ def print_info(packet):
                 try:
                   resp = requests.get(url=base_get_url + host_name)
 
-                  time_offset = int(resp.text)
+                  time_offset = float(resp.text)
                 except Exception:
                   pass
 
