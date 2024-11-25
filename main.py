@@ -20,7 +20,7 @@ app = Flask(__name__)
 def hello_world():
 	return "Hello World!!!"
 
-@app.route("/get/testing/startup")
+@app.route("/get/testing/startup/receiver")
 def return_files_tut_startup_receiver():
 	try:
 
