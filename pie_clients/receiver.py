@@ -53,13 +53,9 @@ def print_info(packet):
                 }
 
                 requests.post(base_post_url, json=out_obj)
+                resp = requests.get(url=base_get_url + host_name)
 
-                try:
-                  resp = requests.get(url=base_get_url + host_name)
-
-                  time_offset = float(resp.text)
-                except Exception:
-                  pass
+                time_offset = float(resp.text)
 
                 old_time = current_time
 
