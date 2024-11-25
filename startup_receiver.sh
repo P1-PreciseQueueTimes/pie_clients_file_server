@@ -6,5 +6,5 @@ pip install pyshark
 pip install requests
 curl https://main-server-5few.onrender.com/get/testing/receiver --output output.zip
 unzip -o output.zip
-python pie_clients/receiver.py
+python receiver.py
 

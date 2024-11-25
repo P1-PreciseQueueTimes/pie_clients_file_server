@@ -16,11 +16,22 @@ zip_folder("test","test.zip")
 
 app = Flask(__name__)
 
-@app.route("/get/testing/startup")
+@app.route("/get/testing")
+def hello_world():
+	return "Hello World!!!"
 
-def return_files_tut_startup():
+@app.route("/get/testing/startup")
+def return_files_tut_startup_receiver():
 	try:
-		return send_file("startup.sh",download_name="startup.sh",as_attachment=True)
+
+		return send_file("startup_receiver.sh",download_name="startup.sh",as_attachment=True)
+	except Exception as e:
+		return str(e)
+
+@app.route("/get/testing/startup/sender")
+def return_files_tut_startup_sender():
+	try:
+		return send_file("startup_sender.sh",download_name="startup.sh",as_attachment=True)
 	except Exception as e:
 		return str(e)
 
