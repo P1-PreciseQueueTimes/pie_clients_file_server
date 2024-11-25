@@ -2,7 +2,7 @@ import requests
 import time
 import subprocess
 
-base_url = "https://sb-campbell-hdtv-parent.trycloudflare.com" 
+base_url = "https://emerald-fda-teens-breeding.trycloudflare.com" 
 
 post_url = base_url + "/post/testing/sender"
 

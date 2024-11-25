@@ -6,7 +6,7 @@ import socket
 
 set_time = False
 
-base_url = "https://sb-campbell-hdtv-parent.trycloudflare.com"
+base_url = "https://emerald-fda-teens-breeding.trycloudflare.com"
 
 base_post_url = base_url + "/post/testing/receiver"
 
