@@ -4,11 +4,13 @@ import os
 import requests
 import socket
 
-set_time = False
+url_file = open("url.txt","r")
 
-base_url = "https://emerald-fda-teens-breeding.trycloudflare.com"
+base_url = url_file.read().strip() 
 
 base_post_url = base_url + "/post/testing/receiver"
+
+base_get_url = base_url + "/get/calibration/diff_time/"
 
 host_name = socket.gethostname()
 
@@ -17,15 +19,20 @@ sender_mac = "dc:a6:32:54:aa:58"
 channel = 13
 user = ""
 
+set_time = False
+
 old_mac = ""
 old_time = 0
+
+time_offset = 0
+calibration_amounts = 0
 
 capture = pyshark.LiveCapture(interface=wifi_interface)
 
 
 def print_info(packet):
-    global old_mac, old_time
-    current_time = time.time_ns()
+    global old_mac, old_time,time_offset
+    current_time = time.time_ns() - time_offset
     try:
         if not packet["WLAN.MGT"] or not packet["WLAN"] or not packet["WLAN_RADIO"]:
             return
@@ -46,6 +53,10 @@ def print_info(packet):
                 }
 
                 requests.post(base_post_url, json=out_obj)
+
+                resp = requests.get(url=base_get_url + host_name)
+
+                time_offset = int(resp.text)
 
                 old_time = current_time
 

@@ -2,15 +2,17 @@ import requests
 import time
 import subprocess
 
-base_url = "https://emerald-fda-teens-breeding.trycloudflare.com" 
+url_file = open("url.txt","r")
+
+base_url = url_file.read().strip() 
 
 post_url = base_url + "/post/testing/sender"
 
 request_number = 0
 
 while True:
-    t = time.time_ns()
     subprocess.run(["wpa_cli" ,"-i" ,"wlan0", "scan"])
+    t = time.time_ns()
     request_number += 1
 
     out_obj = {"request_number":request_number,"internal_time":t}
