@@ -32,7 +32,7 @@ capture = pyshark.LiveCapture(interface=wifi_interface)
 
 def print_info(packet):
     global old_mac, old_time,time_offset
-    current_time = time.time_ns() - time_offset
+    current_time = time.time_ns() 
     try:
         if not packet["WLAN.MGT"] or not packet["WLAN"] or not packet["WLAN_RADIO"]:
             return
@@ -48,7 +48,7 @@ def print_info(packet):
 
                 out_obj = {
                     "host_name": host_name,
-                    "internal_time": current_time,
+                    "internal_time": current_time - time_offset,
                     "signal_strength": signal_strength,
                 }
 
