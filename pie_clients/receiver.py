@@ -7,27 +7,11 @@ import subprocess
 
 set_time = False
 
-url = "https://louisiana-trading-courtesy-chris.trycloudflare.com/post/testing/receiver"
+base_url = "https://till-palmer-nt-areas.trycloudflare.com"
 
-url_start = "https://louisiana-trading-courtesy-chris.trycloudflare.com/post/testing/receiver_start"
+base_post_url = base_url + "/post/testing/receiver"
 
 host_name = socket.gethostname() 
-
-while not set_time:
-	try:
-
-		sync_time = requests.get("http://localhost:5000/get/testing/time").text
-
-		subprocess.run(["sudo","date","+%s","-s",f"@{sync_time}"])
-		set_time = True
-
-
-	except Exception:
-		pass
-
-	out_obj = {"host_name":host_name,"connected":set_time}
-
-	requests.post(url_start,json=out_obj)
 
 wifi_interface = "wlan1" 
 sender_mac = "58:cf:79:db:00:34"
@@ -37,7 +21,6 @@ user = ""
 
 old_mac = ""
 old_time = 0
-
 
 
 capture = pyshark.LiveCapture(interface=wifi_interface)
@@ -61,7 +44,7 @@ def print_info(packet):
 
                 out_obj = {"host_name":host_name,"internal_time":current_time}
 
-                requests.post(url,json=out_obj)
+                requests.post(base_post_url,json=out_obj)
 
                 old_time = current_time
 
