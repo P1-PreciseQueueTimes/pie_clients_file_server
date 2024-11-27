@@ -2,6 +2,7 @@ import requests
 import time
 import subprocess
 import socketio
+import socket
 
 url_file = open("url.txt","r")
 
@@ -16,10 +17,19 @@ def makeScan():
 
         request_number += 1
 
+host_name = socket.gethostname()
 
 base_url = url_file.read().strip() 
 
 post_url = base_url + "/post/testing/sender"
+
+post_url_start = base_url + "/post/testing/sender/start"
+
+out_obj = {
+    "host_name": host_name
+}
+
+requests.post(post_url_start, json=out_obj)
 
 automatic = False
 

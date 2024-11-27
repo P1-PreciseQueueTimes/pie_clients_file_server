@@ -10,7 +10,7 @@ base_url = url_file.read().strip()
 
 base_post_url = base_url + "/post/testing/receiver"
 
-base_get_url = base_url + "/get/calibration/diff_time/"
+base_post_start = base_url + "/post/testing/receiver/start"
 
 host_name = socket.gethostname()
 
@@ -24,11 +24,13 @@ set_time = False
 old_mac = ""
 old_time = 0
 
-time_offset = 0
-calibration_amounts = 0
-
 capture = pyshark.LiveCapture(interface=wifi_interface)
 
+out_obj = {
+    "host_name": host_name
+}
+
+requests.post(base_post_start, json=out_obj)
 
 def print_info(packet):
     global old_mac, old_time,time_offset
@@ -48,14 +50,11 @@ def print_info(packet):
 
                 out_obj = {
                     "host_name": host_name,
-                    "internal_time": current_time - time_offset,
+                    "internal_time": current_time ,
                     "signal_strength": signal_strength,
                 }
 
                 requests.post(base_post_url, json=out_obj)
-                resp = requests.get(url=base_get_url + host_name)
-
-                time_offset = float(resp.text)
 
                 old_time = current_time
 
