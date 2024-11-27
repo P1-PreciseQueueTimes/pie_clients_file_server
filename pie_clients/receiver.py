@@ -46,6 +46,7 @@ def print_info(packet):
                 return
 
             if packet["WLAN"].ta == sender_mac:
+                print("received signal")
                 signal_strength = packet["WLAN_RADIO"].signal_dbm
 
                 out_obj = {
