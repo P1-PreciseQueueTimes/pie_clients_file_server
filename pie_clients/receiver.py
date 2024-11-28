@@ -67,5 +67,5 @@ def print_info(packet):
 out_str = f'airmon-ng start "{wifi_interface}" {channel} >/dev/null 2>&1'
 os.system("echo %s|sudo -S %s" % (user, out_str))
 
-capture.apply_on_packets(print_info, packet_count=10000)
+capture.apply_on_packets(print_info)
 
