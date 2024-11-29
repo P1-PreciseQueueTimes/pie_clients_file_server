@@ -8,7 +8,7 @@ url_file = open("url.txt","r")
 
 def makeScan():
         global request_number
-        subprocess.run(["wpa_cli" ,"-i" ,"wlan0", "scan"])
+        subprocess.run(["iw","wlan0","scan"])
         t = time.time_ns()
 
         out_obj = {"request_number":request_number,"internal_time":t}
