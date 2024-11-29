@@ -1,4 +1,11 @@
+import os
+
+scapy_path = "/home/admin/.venv/bin/scapy/"
+
+os.sys.path.append(scapy_path)
+
 from scapy.all import *
+
 
 sender = "dc:a6:32:54:ac:ad"
 ssid = ""
