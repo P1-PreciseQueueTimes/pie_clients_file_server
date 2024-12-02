@@ -53,8 +53,9 @@ def makeScan():
                 if not packet["WLAN"].ta:
                     return
                 if packet["WLAN"].fc_type_subtype == "0x0004":
-
                     if packet["WLAN"].ta == receiver_mac:
+
+                        print("received package")
                         t_rr = current_time 
                         break
             time.sleep(8)
