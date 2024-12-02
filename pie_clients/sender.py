@@ -48,11 +48,7 @@ def makeScan():
             for packet in capture.sniff_continuously():
                 current_time = time.time_ns()
 
-                if not packet["WLAN.MGT"] or not packet["WLAN"] or not packet["WLAN_RADIO"]:
-                    return
-                if not packet["WLAN"].ta:
-                    return
-                if packet["WLAN"].fc_type_subtype == "0x0004":
+                if packet["WLAN.MGT"] and packet["WLAN"] and packet["WLAN_RADIO"] and packet["WLAN"].ta and packet["WLAN"].fc_type_subtype == "0x0004":
                     if packet["WLAN"].ta == receiver_mac:
 
                         print("received package")
