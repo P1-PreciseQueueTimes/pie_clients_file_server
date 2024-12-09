@@ -46,10 +46,6 @@ def print_info(packet):
             if old_mac == packet["WLAN"].ta or (current_time - old_time) / 1000000.0 < 5000.0:
                 return
             """
-
-            if (current_time - old_time) / 1000000.0 < 5000.0:
-                return
-
             if packet["WLAN"].ta == sender_mac:
                 print("received signal")
                 signal_strength = packet["WLAN_RADIO"].signal_dbm
