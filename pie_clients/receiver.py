@@ -16,7 +16,7 @@ host_name = socket.gethostname()
 
 wifi_interface = "wlan1"
 sender_mac = "dc:a6:32:54:ac:ad"
-channel = 13
+channel = 11 
 user = ""
 
 set_time = False
