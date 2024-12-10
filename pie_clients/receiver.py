@@ -66,6 +66,7 @@ def print_info(packet):
                 "host_name": host_name,
                 "internal_time": current_time ,
                 "signal_strength": signal_strength,
+                "mac_adress":packet["WLAN"].ta,
             }
 
             requests.post(base_post_url, json=out_obj) #sends data to server.
