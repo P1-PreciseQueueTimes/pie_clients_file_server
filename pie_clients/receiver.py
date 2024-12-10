@@ -36,7 +36,7 @@ out_obj = {
 requests.post(base_post_start, json=out_obj) #sends it's name to server to show it is active.
 
 def print_info(packet):
-    global old_mac, old_time,time_offset
+    global old_mac, old_time,time_offset, mac_table
     current_time = time.time_ns() 
     try:
         if not packet["WLAN.MGT"] or not packet["WLAN"] or not packet["WLAN_RADIO"]: #filters out wrong packages.
@@ -51,7 +51,7 @@ def print_info(packet):
             """
 
             if (packet["WLAN"].ta in mac_table):
-                if (current_time-mac_table[packet["WLAN"].ta])/ 1000000.0 < 5000.0:
+                if (current_time-mac_table[packet["WLAN"].ta])/ 1000000.0 < 500000000000000.0:#5000.0:
                     return
             mac_table[packet["WLAN"].ta]=current_time
 
@@ -66,7 +66,7 @@ def print_info(packet):
                 "host_name": host_name,
                 "internal_time": current_time ,
                 "signal_strength": signal_strength,
-                "mac_adress":packet["WLAN"].ta,
+                "mac_adress": packet["WLAN"].ta,
             }
 
             requests.post(base_post_url, json=out_obj) #sends data to server.
