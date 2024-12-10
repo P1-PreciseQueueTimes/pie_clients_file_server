@@ -51,7 +51,7 @@ def print_info(packet):
             """
 
             if (packet["WLAN"].ta in mac_table):
-                if (current_time-mac_table[packet["WLAN"].ta])/ 1000000.0 < 500000000000000.0:#5000.0:
+                if (current_time-mac_table[packet["WLAN"].ta])/ 1000000.0 < 5000.0:
                     return
             mac_table[packet["WLAN"].ta]=current_time
 
