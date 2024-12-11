@@ -46,33 +46,35 @@ def print_info(packet):
 
         if packet["WLAN"].fc_type_subtype == "0x0004":
             """
+
             if old_mac == packet["WLAN"].ta or (current_time - old_time) / 1000000.0 < 5000.0:
                 return
-            """
 
             if (packet["WLAN"].ta in mac_table):
                 if (current_time-mac_table[packet["WLAN"].ta])/ 1000000.0 < 5000.0:
                     return
             mac_table[packet["WLAN"].ta]=current_time
+            """
 
             #below blocktext is for testing a single pi sender.
-            """if (current_time - old_time) / 1000000.0 < 5000.0:
+            if (current_time - old_time) / 1000000.0 < 5000.0:
                 return
-            if packet["WLAN"].ta == sender_mac: #checks mac-adress is the correct one."""
+            if packet["WLAN"].ta == sender_mac: #checks mac-adress is the correct one.
+
             
-            print("received signal")
-            signal_strength = packet["WLAN_RADIO"].signal_dbm
+                print("received signal")
+                signal_strength = packet["WLAN_RADIO"].signal_dbm
 
-            out_obj = {
-                "host_name": host_name,
-                "internal_time": current_time ,
-                "signal_strength": signal_strength,
-                "mac_adress": packet["WLAN"].ta,
-            }
+                out_obj = {
+                    "host_name": host_name,
+                    "internal_time": current_time ,
+                    "signal_strength": signal_strength,
+                    "mac_adress": packet["WLAN"].ta,
+                }
 
-            requests.post(base_post_url, json=out_obj) #sends data to server.
+                requests.post(base_post_url, json=out_obj) #sends data to server.
 
-            old_mac = packet["WLAN"].ta
+                old_mac = packet["WLAN"].ta
     except Exception:
         pass
 
