@@ -53,4 +53,4 @@ sio.connect(base_url) #connects to server
 while True: #Makes and automatic scan every 8 seconds, if turned on.
     if automatic == True:
         makeScan()
-        time.sleep(12)
+        time.sleep(20)

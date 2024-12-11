@@ -57,7 +57,7 @@ def print_info(packet):
             """
 
             #below blocktext is for testing a single pi sender.
-            if (current_time - old_time) / 1000000.0 < 5000.0:
+            if (current_time - old_time) / 1000000.0 < 10000.0:
                 return
             if packet["WLAN"].ta == sender_mac: #checks mac-adress is the correct one.
 
