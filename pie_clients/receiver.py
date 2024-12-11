@@ -39,7 +39,7 @@ def print_info(packet):
     global old_mac, old_time,time_offset, mac_table
     current_time = time.time_ns() 
     try:
-        if not packet["WLAN.MGT"] or not packet["WLAN"] or not packet["WLAN_RADIO"]: #filters out wrong packages.
+        if not packet["WLAN"] or not packet["WLAN_RADIO"]: #filters out wrong packages.
             return
         if not packet["WLAN"].ta: #checks if packet have a mac-adress.
             return
@@ -74,8 +74,9 @@ def print_info(packet):
 
                 requests.post(base_post_url, json=out_obj) #sends data to server.
 
-                old_mac = packet["WLAN"].ta
                 old_time = current_time
+
+            old_mac = packet["WLAN"].ta
     except Exception as e:
         print(str(e))
 
