@@ -76,8 +76,8 @@ def print_info(packet):
 
                 old_mac = packet["WLAN"].ta
                 old_time = current_time
-    except Exception:
-        pass
+    except Exception as e:
+        print(str(e))
 
 
 out_str = f'airmon-ng start "{wifi_interface}" {channel} >/dev/null 2>&1' #linux command to setup antenna-sniffer
