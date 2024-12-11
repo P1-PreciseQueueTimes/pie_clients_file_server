@@ -75,6 +75,7 @@ def print_info(packet):
                 requests.post(base_post_url, json=out_obj) #sends data to server.
 
                 old_mac = packet["WLAN"].ta
+                old_time = current_time
     except Exception:
         pass
 
