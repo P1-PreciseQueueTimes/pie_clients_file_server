@@ -20,6 +20,8 @@ sender_mac = "dc:a6:32:54:ac:ad" #specific mac-adresse to search for. Easier to 
 channel = 11 
 user = ""
 
+old_time = 0
+
 
 mac_table={}
 
@@ -46,19 +48,19 @@ def print_info(packet):
             if old_mac == packet["WLAN"].ta or (current_time - old_time) / 1000000.0 < 5000.0:
                 return
 
-            """
 
             if (packet["WLAN"].ta in mac_table):
                 if (current_time-mac_table[packet["WLAN"].ta])/ 1000000.0 < 5000.0:
                     return
             mac_table[packet["WLAN"].ta]=current_time
 
-            #below blocktext is for testing a single pi sender.
             """
+
+            #below blocktext is for testing a single pi sender.
             if (current_time - old_time) / 1000000.0 < 10000.0:
                 return
-            if packet["WLAN"].ta == sender_mac: #checks mac-adress is the correct one.
-            """
+            if packet["WLAN"].ta != sender_mac: #checks mac-adress is the correct one.
+                return
 
             
             print("received signal")
