@@ -44,23 +44,23 @@ def print_info(packet):
 
         if packet["WLAN"].fc_type_subtype == "0x0004":
             """
-
             if old_mac == packet["WLAN"].ta or (current_time - old_time) / 1000000.0 < 5000.0:
                 return
+            """
 
-
-            if (packet["WLAN"].ta in mac_table):
+            if (packet["WLAN"].ta in mac_table.keys()):
                 if (current_time-mac_table[packet["WLAN"].ta])/ 1000000.0 < 5000.0:
                     return
             mac_table[packet["WLAN"].ta]=current_time
 
-            """
 
             #below blocktext is for testing a single pi sender.
+            """
             if (current_time - old_time) / 1000000.0 < 10000.0:
                 return
             if packet["WLAN"].ta != sender_mac: #checks mac-adress is the correct one.
                 return
+            """
 
             
             print("received signal")
