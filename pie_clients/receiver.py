@@ -74,6 +74,7 @@ def print_info(packet):
             }
 
             requests.post(base_post_url, json=out_obj) #sends data to server.
+            old_time = current_time
 
 
     except Exception as e:
